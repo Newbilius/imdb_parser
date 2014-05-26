@@ -7,14 +7,13 @@ header('Content-Type: text/html; charset=utf-8');
 function print_pr($data) {
     echo "<pre>" . print_r($data, true) . "</pre>";
 }
-/*
-$url="http://www.imdb.com/title/tt0083907/?ref_=nv_sr_2";
-$url="http://www.imdb.com/title/tt1266029/?ref_=fn_al_tt_2";
 
+/*$url="http://www.imdb.com/title/tt0083907/";
+$url="http://www.imdb.com/title/tt0106308/";
 $data = file_get_contents($url);
-file_put_contents("tmp3.txt",$data);
-*/
-$data = file_get_contents("tmp1.txt");
+file_put_contents("tmp3.txt",$data);*/
+
+$data = file_get_contents("tmp3.txt");
 
 $html = phpQuery::newDocumentHTML($data, "utf-8");
 
@@ -30,6 +29,15 @@ foreach ($html->find("div.txt-block") as $element) {
 	}
 	if (strpos($tag_name,"Budget")!==FALSE){
 		echo "Budget: ";
+		
+		$tmp1=pq($element);
+		$tmp1->find("h4.inline")->remove();
+		$tmp1->find("span")->remove();
+		
+		print_pr(str_replace(Array("$",","),"",trim($tmp1->text())));
+	}
+	if (strpos($tag_name,"Gross")!==FALSE){
+		echo "Gross: ";
 		
 		$tmp1=pq($element);
 		$tmp1->find("h4.inline")->remove();

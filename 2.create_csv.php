@@ -10,11 +10,10 @@ foreach (glob('data/*.html') as $filename) {
 	
 	if ($data->Budget!=""){
 		if (is_numeric($data->Budget)){
-			//print_r($data->Title." [".$data->Budget."]");
-			fputcsv($fp, array($data->Title,$data->Rating,$data->Budget));
-			echo "<br>";
+			fputcsv($fp, array($data->Title,$data->Budget),";");
 		}
 	}
 }
 fclose($fp);
+echo "COMPLETE!"
 ?>

@@ -11,6 +11,7 @@ foreach (glob('data/*.html') as $filename) {
 	if ($data->Budget!=""){
 		if (is_numeric($data->Budget)){
 			fputcsv($fp, array($data->Title,$data->Budget),";");
+			print_r(array($data->Title,$data->Budget));
 		}
 	}
 }

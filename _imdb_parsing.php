@@ -54,7 +54,7 @@ function GetData($data){
 		$movieData->Title=$original_title;
 	}
 	
-	$movieData->Title=str_replace('"',"",$movieData->Title);
+	$movieData->Title=str_replace(Array('"',"\n","         (I)"),"",$movieData->Title);
 
 	$movieData->Rating=$html->find("span[itemprop=ratingValue]")->html();
 	return $movieData;

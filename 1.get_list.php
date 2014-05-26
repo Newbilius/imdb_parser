@@ -15,9 +15,11 @@ do{
 		$href=pq($element)->find("td.title a:first")->attr("href");
 		$file_name=str_replace(Array("/","title"),"",$href).".html";
 
-	file_put_contents("data/".$file_name,
-		file_get_contents("http://www.imdb.com".$href)
-		);	
+	if (!file_exists("data/".$file_name)){
+		file_put_contents("data/".$file_name,
+			file_get_contents("http://www.imdb.com".$href)
+			);	
+		}
 	}
 
 	$item_num+=100;
